@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Nama</th>
+              <th scope="col">Kelas</th>
+              <th scope="col">Nama Event</th>
+              <th scope="col">Waktu</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for (let transaksil of transaksi.sort((a,b)=>a.nama-b.nama)) { %>
+            <tr>
+              <th scope="row"><%= transaksil.nama %></th>
+              <th scope="row"><%= transaksil.kelas %></th>
+              <th scope="row"><%= transaksil.nama_event %></th>
+              <th scope="row">
+                <%= transaksil.created_at %>
+                <!-- <div id="image-list">
+                </div> -->
+              </th>
+            </tr>
+             <% } %>
+          </tbody>
+        </table>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+</html>
