@@ -21,10 +21,9 @@ module.exports ={
                 res.render("profile",{
                     url: 'http://localhost:5000/',
                     userName: req.session.username,
-                    nama: results[0]['user_name'],
-                    email: results[0]['user_email'],
-                    jabatan: results[0]['jabatan'],
-                    periode: results[0]['periode']
+                    nama: results[0]['nama'],
+                    password: results[0]['password'],
+                    status: results[0]['status']
                 });
             });
             connection.release();

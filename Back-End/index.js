@@ -21,11 +21,11 @@ app.use(bodyParser.json())
 app.use(session({
     resave: false,
     saveUninitialized: false,
-    secret: 'osisSMKPlusPelitaNusantara',
+    secret: 'm4nk344444',
     name: 'secretName',
     cookie: {
         sameSite: true,
-        maxAge: 60000
+        maxAge: 3600000
     },
 }))
 app.use(flash());

@@ -1,4 +1,4 @@
-const userModel = require('../models/controller-create-data');
+// const userModel = require('../models/controller-create-data');
 
 module.exports = {
     formCreateData: (req, res) => {
