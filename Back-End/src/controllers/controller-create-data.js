@@ -1,33 +1,75 @@
-// const userModel = require('../models/controller-create-data');
+// Definisikan configurasi Database
+const config = require('../configs/database');
+// Gunakan library mysql
+let mysql    = require('mysql');
+// Buat koneksi
+let pool     = mysql.createPool(config);
 
-module.exports = {
-    formCreateData: (req, res) => {
-        res.render('create-data', {
-            url: 'http://localhost:5000/',
+// Kirim error jika koneksi gagal
+pool.on('error',(err)=> {
+    console.error(err);
+});
+
+module.exports ={
+    // Fungsi untuk merender file create-data yang ada pada folder 'src/views/create-data.ejs'
+    formCreateData(req,res){
+        res.render("create-data",{
+            // Definisikan semua variabel yang ingin ikut dirender ke dalam create-data.ejs
+            url : 'http://localhost:5000/',
         });
     },
-
-    saveCreateData: (req, res) => {
+    // Fungsi untuk menyimpan data
+    saveCreateData(req,res){
+        // Tampung inputan user kedalam variabel nama, kelas, event, dan bukti
         let nama = req.body.nama;
         let kelas = req.body.kelas;
         let event = req.body.nama_event;
         let bukti = req.body.bukti_transaksi;
         let waktu = new Date();
-
-        userModel.saveDataToDatabase(nama, kelas, event, waktu, (error, message) => {
-            if (error) {
-                req.flash('color', 'danger');
-                req.flash('status', 'Error..');
-                req.flash('message', error);
-                res.redirect('/create-data');
-            } else {
-                req.flash('color', 'success');
-                req.flash('status', 'Yes..');
-                req.flash('message', message);
-                setTimeout(() => {
-                    res.redirect('/home');
-                }, 5000);
-            }
-        });
-    },
-};
+        
+        // Pastikan semua variabel terisi
+        if (nama && kelas && event) {
+            // Panggil koneksi dan eksekusi query
+            pool.getConnection(function(err, connection) {
+                if (err) {
+                    console.error('Kesalahan koneksi database:', err);
+                    // Tambahkan penanganan kesalahan seperti menampilkan pesan kesalahan kepada pengguna
+                    req.flash('color', 'danger');
+                    req.flash('status', 'Error..');
+                    req.flash('message', 'Gagal menyimpan data.');
+                    res.redirect('/create-data'); // Redirect kembali ke halaman create-data
+                    return;
+                }
+                connection.query(
+                    `INSERT INTO transaksi (nama, kelas, nama_event, created_at) VALUES (?, ?, ?, ?);`
+                , [nama, kelas, event, waktu], function (error, results) {
+                    if (error) {
+                        console.error('Kesalahan query database:', error);
+                        // Tambahkan penanganan kesalahan seperti menampilkan pesan kesalahan kepada pengguna
+                        req.flash('color', 'danger');
+                        req.flash('status', 'Error..');
+                        req.flash('message', 'Gagal menyimpan data.');
+                        res.redirect('/create-data'); // Redirect kembali ke halaman create-data
+                        return;
+                    }
+                    // Jika tidak ada kesalahan, set flash message untuk menampilkan pesan sukses
+                    req.flash('color', 'success');
+                    req.flash('status', 'Yes..');
+                    req.flash('message', 'Penambahan data berhasil.');
+                    // Redirect ke halaman '/home' setelah 5 detik
+                    setTimeout(() => {
+                        res.redirect('/home');
+                    }, 5000);
+                });
+                // Koneksi selesai
+                connection.release();
+            });
+        } else {
+            // Jika ada variabel yang tidak terisi, tampilkan pesan kesalahan
+            req.flash('color', 'danger');
+            req.flash('status', 'Error..');
+            req.flash('message', 'Harap isi semua field.');
+            res.redirect('/create-data'); // Redirect kembali ke halaman create-data
+        }
+    }
+}

@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const flash = require('req-flash');
 const app = express();
+images = [{image: "./src/Public/Background.jpg"}];
 
 // Definisi lokasi file router
 const loginRoutes = require('./src/routes/router-login');
@@ -21,15 +22,16 @@ app.use(bodyParser.json())
 app.use(session({
     resave: false,
     saveUninitialized: false,
-    secret: 'm4nk344444',
+    secret: 'osisSMKPlusPelitaNusantara',
     name: 'secretName',
     cookie: {
         sameSite: true,
-        maxAge: 3600000
+        maxAge: 60000
     },
 }))
 app.use(flash());
-app.use(express.static(path.join(__dirname, 'src/assets')));
+app.use(express.static(path.join(__dirname, 'src/public')));
+// app.use(express.static(path.join(__dirname, 'src/assets')));
 
 // Setting folder views
 app.set('views',path.join(__dirname,'src/views'));
@@ -51,9 +53,7 @@ app.use(function(req, res, next) {
 });
 // end
 
-app.set('views',path.join(__dirname,'src/views'));
-
 // Gunakan port server
-app.listen(1242, ()=>{
-    console.log('Server Berjalan di Port : '+1242);
+app.listen(5000, ()=>{
+    console.log('Server Berjalan di Port : '+5000);
 });

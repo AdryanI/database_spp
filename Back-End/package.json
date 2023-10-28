@@ -1,20 +1,29 @@
 {
-  "name": "back-end",
+  "name": "data-transaksi-osis-penus",
   "version": "1.0.0",
-  "description": "",
+  "description": "Untuk memudahkan OSIS dalam mencatat data transaksi",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm start"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "www.github.com/erlangftsiesta"
+  },
+  "author": "erlangftsiesta",
+  "license": "UNLICENSED",
   "dependencies": {
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.2",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
     "express-session": "^1.17.3",
+    "fast-csv": "^4.3.6",
     "flash": "^1.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1",
     "mysql": "^2.18.1",
-    "req-flash": "^0.0.3"
+    "req-flash": "^0.0.3",
+    "update": "^0.7.4"
   }
 }
