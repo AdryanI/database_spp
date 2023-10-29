@@ -17,8 +17,8 @@
     <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
         <div class="navbar-brand" href="#" style="display: flex;">
         <div class="flex" style="width: auto;">
-           <img src="/logoOsis.png" width="7.5%">
-           <a class="navbar-brand" href="<%= url %>"><b>OSIS SMK Plus Pelita Nusantara</b></a>
+            <img src="/penus.png" width="3.5%">
+            <a class="navbar-brand" href="<%= url %>"><b>SPP SMK Plus Pelita Nusantara</b></a>
        </div>
        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -40,12 +40,20 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="<%= url %>profile">Profil</a>
+                        <% if (status === 'admin' || status === 'siswa') { %>
+                        <a class="dropdown-item" href="<%= url %>create-data">Pencatatan Transaksi</a>
+                        <% } %>
+                        <% if (status === 'admin' || status === 'petugas') { %>
+                        <a class="dropdown-item" href="<%= url %>show-data">Riwayat Transaksi</a>
+                        <% } %>
                         <a class="dropdown-item" href="<%= url %>login/logout">Logout</a>
+
                     </div>
                 </li>
             </ul>
         </div>
     </nav> <br> <br> <br>
+    
     <section class="mt-4 pb-5">
         <div class="container">
             <div class="row">
@@ -65,32 +73,34 @@
             </div>    
         </div>
     </section>
-    <section class="mt-15 pb-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header" style="background-color: rgb(62, 62, 62);">
-                            <h3 style="color: #ffffff;" class="d-flex justify-content-center">Pencatatan Pembayaran</b></h3>
-                        </div>
-                        <div class="card-body">
-                            <blockquote class="blockquote mb-0 text-center">
-                                <a class="nav-link" href="<%= url %>create-data"><button type="button" class="btn btn-dark justify-content-center">Untuk Mencatat Pembayaran klik disini</button></a>
-                            </blockquote>
-                        </div>
-                    </div>
-                </div>
-            </div>    
-        </div>
-    </section>
-    <% if (status === 'admin') { %>
+    <% if (status === 'admin' || status === 'siswa') { %>
         <section class="mt-15 pb-5">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header" style="background-color: rgb(62, 62, 62);">
-                                <h3 style="color: #ffffff;" class="d-flex justify-content-center">Data Transaksi</b></h3>
+                                <h3 style="color: #ffffff;" class="d-flex justify-content-center"><b>Pencatatan Transaksi</b></h3>
+                            </div>
+                            <div class="card-body">
+                                <blockquote class="blockquote mb-0 text-center">
+                                    <a class="nav-link" href="<%= url %>create-data"><button type="button" class="btn btn-dark justify-content-center">Untuk Mencatat Transaksi klik disini</button></a>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                </div>    
+            </div>
+        </section>
+    <% } %>
+    <% if (status === 'admin' || status === 'petugas') { %>
+        <section class="mt-15 pb-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header" style="background-color: rgb(62, 62, 62);">
+                                <h3 style="color: #ffffff;" class="d-flex justify-content-center">Riwayat Transaksi</b></h3>
                             </div>
                             <div class="card-body">
                                 <blockquote class="blockquote mb-0 text-center">

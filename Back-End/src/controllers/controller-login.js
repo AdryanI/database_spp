@@ -37,16 +37,16 @@ module.exports ={
                         req.session.loggedin = true;
                         req.session.userid = user.user_id;
                         req.session.username = user.user_name;
-
-                        if (user.status === 'admin') {
-                            res.redirect('/admin');
-                        }
-                        else if (user.status === 'petugas') {
-                            res.redirect('/petugas');
-                        }
-                        else if (user.status === 'siswa'){
-                            res.redirect('/siswa')
-                        }
+                        res.redirect('/')
+                        // if (user.status === 'admin') {
+                        //     res.redirect('/admin');
+                        // }
+                        // else if (user.status === 'petugas') {
+                        //     res.redirect('/petugas');
+                        // }
+                        // else if (user.status === 'siswa'){
+                        //     res.redirect('/siswa')
+                        // }
                         // res.redirect('/');
                     } else {
                         // Jika data tidak ditemukan, set library flash dengan pesan error yang diinginkan
