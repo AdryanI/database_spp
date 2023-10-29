@@ -14,7 +14,7 @@ module.exports ={
             if (err) throw err;
             connection.query(
                 `
-                SELECT * FROM user where user_id = '${id}';
+                SELECT * FROM login where user_id = '${id}';
                 `
             , function (error, results) {
                 if(error) throw error;
@@ -23,7 +23,7 @@ module.exports ={
                     userName: req.session.username,
                     nama: results[0]['user_name'],
                     email: results[0]['user_email'],
-                    jabatan: results[0]['jabatan'],
+                    status: results[0]['status'],
                     periode: results[0]['periode']
                 });
             });

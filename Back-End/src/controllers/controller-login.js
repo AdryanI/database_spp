@@ -20,21 +20,34 @@ module.exports ={
     },
     // Post / kirim data yang diinput user
     loginAuth(req,res){
-        let email = req.body.email;
-        let password = req.body.pass;
-        if (email && password) {
+        const email = req.body.email; //ini mengambil input dari user di halaman EJS bukan mySQL!
+        const password = req.body.pass; //ini mengambil input dari user di halaman EJS bukan mySQL!
+        const status = req.body.stats; //ini mengambil input dari user di halaman EJS bukan mySQL!
+
+        if (email && password && status) {
             pool.getConnection(function(err, connection) {
                 if (err) throw err;
                 connection.query(
-                    `SELECT * FROM user WHERE user_email = ? AND user_password = SHA2(?,512)`
-                , [email, password],function (error, results) {
+                    `SELECT * FROM login WHERE user_email = ? AND user_password = ? AND status = ?`
+                , [email, password, status],function (error, results) {
                     if (error) throw error;  
                     if (results.length > 0) {
+                        const user = results[0];
                         // Jika data ditemukan, set sesi user tersebut menjadi true
                         req.session.loggedin = true;
-                        req.session.userid = results[0].user_id;
-                        req.session.username = results[0].user_name;
-                        res.redirect('/');
+                        req.session.userid = user.user_id;
+                        req.session.username = user.user_name;
+
+                        if (user.status === 'admin') {
+                            res.redirect('/admin');
+                        }
+                        else if (user.status === 'petugas') {
+                            res.redirect('/petugas');
+                        }
+                        else if (user.status === 'user'){
+                            res.redirect('/user')
+                        }
+                        // res.redirect('/');
                     } else {
                         // Jika data tidak ditemukan, set library flash dengan pesan error yang diinginkan
                         req.flash('color', 'danger');

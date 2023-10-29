@@ -83,23 +83,25 @@
             </div>    
         </div>
     </section>
-    <section class="mt-15 pb-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header" style="background-color: rgb(62, 62, 62);">
-                            <h3 style="color: #ffffff;" class="d-flex justify-content-center">Data Transaksi</b></h3>
-                        </div>
-                        <div class="card-body">
-                            <blockquote class="blockquote mb-0 text-center">
-                                <a class="nav-link" href="<%= url %>show-data"><button type="button" class="btn btn-dark justify-content-center">Untuk Mencatat Pembayaran klik disini</button></a>
-                            </blockquote>
+    <% if (status === 'admin') { %>
+        <section class="mt-15 pb-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header" style="background-color: rgb(62, 62, 62);">
+                                <h3 style="color: #ffffff;" class="d-flex justify-content-center">Data Transaksi</b></h3>
+                            </div>
+                            <div class="card-body">
+                                <blockquote class="blockquote mb-0 text-center">
+                                    <a class="nav-link" href="<%= url %>show-data"><button type="button" class="btn btn-dark justify-content-center">Untuk Mencatat Pembayaran klik disini</button></a>
+                                </blockquote>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>    
-        </div>
-    </section>
+                </div>    
+            </div>
+        </section>
+    <% } %>
 </body>
 </html>

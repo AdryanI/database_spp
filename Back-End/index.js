@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const flash = require('req-flash');
 const app = express();
-images = [{image: "./src/Public/Background.jpg"}];
+// images = [{image: "./src/Public/Background.jpg"}];
 
 // Definisi lokasi file router
 const loginRoutes = require('./src/routes/router-login');
@@ -26,7 +26,7 @@ app.use(session({
     name: 'secretName',
     cookie: {
         sameSite: true,
-        maxAge: 60000
+        maxAge: 1*60*60*24*7*1000
     },
 }))
 app.use(flash());
