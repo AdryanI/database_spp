@@ -16,7 +16,7 @@ module.exports = {
                     if (error) throw error;  
                     if (results.length > 0) {
             const status = results[0]['status']
-                       if (status === 'admin' || status === 'petugas' || status === 'user') {
+                       if (status === 'admin' || status === 'petugas' || status === 'siswa') {
                         const user = results[0];
                         // Jika data ditemukan, set sesi user tersebut menjadi true
                         req.session.loggedin = true;

@@ -2,6 +2,7 @@ const login = require('./controller-login');
 const register = require('./controller-register');
 const admin = require('./controller-admin')
 const petugas = require('./controller-petugas');
+const siswa = require('./controller-siswa');
 const home = require('./controller-home');
 const profile = require('./controller-profile');
 const createData = require('./controller-create-data');
@@ -12,6 +13,7 @@ module.exports ={
 	register,
 	admin,
 	petugas,
+	siswa,
 	home,
 	profile, 
 	createData,

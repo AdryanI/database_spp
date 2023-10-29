@@ -44,8 +44,8 @@ module.exports ={
                         else if (user.status === 'petugas') {
                             res.redirect('/petugas');
                         }
-                        else if (user.status === 'user'){
-                            res.redirect('/user')
+                        else if (user.status === 'siswa'){
+                            res.redirect('/siswa')
                         }
                         // res.redirect('/');
                     } else {

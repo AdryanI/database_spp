@@ -31,6 +31,7 @@ app.use(session({
 }))
 app.use(flash());
 app.use(express.static(path.join(__dirname, 'src/public')));
+app.use(express.static(path.join(__dirname, 'src/public/user_account')));
 // app.use(express.static(path.join(__dirname, 'src/assets')));
 
 // Setting folder views
