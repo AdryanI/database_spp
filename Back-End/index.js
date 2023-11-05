@@ -5,7 +5,48 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const flash = require('req-flash');
 const app = express();
-// images = [{image: "./src/Public/Background.jpg"}];
+const multer = require('multer');
+
+//declare Multer Image Location
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, '../src/gambar')
+    },
+    filename: (req, file, cb) => {
+      // bikin file nama random
+      cb(null, Date.now() + path.extname(file.originalname));
+    }
+  });
+
+//multer uploadnya:
+const upload = multer({storage: storage});
+
+app.get('/uploadImg', (req, res)=> {
+    res.render('index', {rpl3: result});
+})
+app.post("/profile", upload.single('image'), (req, res) => {
+res.redirect('/');
+});
+//function image fetch
+app.get('/getAllImages', (req, res) => {
+    const fs = require('fs');
+    const imageDir = ("src/public/user_account");
+    fs.readdir(imageDir, (err, files) => {
+        if (err) {
+          console.error(err);
+          res.status(500).json({ error: 'Failed to fetch images' });
+        } else {
+          files = files.filter(file => !file.startsWith('.')); // biar yang kebaca semua file
+          res.json(files);
+        }
+      });
+})
+app.get('/imageGet', (req, res) => {
+    const imageName = req.query.name;
+    // logika buat ngefetch gambar terus masukin ke direktori src/gambar
+    const imagePath = path.join(__dirname, 'src/gambar', imageName);
+    res.sendFile(imagePath);
+  });
 
 // Definisi lokasi file router
 const loginRoutes = require('./src/routes/router-login');

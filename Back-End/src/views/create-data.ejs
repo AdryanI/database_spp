@@ -18,18 +18,19 @@
 		<div class="row h-100 justify-content-center align-items-center">
 			<form action="<%= url %>create-data/save" method="POST" class="col-md-4 card">
 				<h2>Form Pembayaran</h2>
-				<div class="form-group">
-					<label>Nama: </label>
-					<input type="text" name="nama" class="form-control" placeholder="Masukan Nama" required>
+                <div class="form-group">
+                    <label>Nama: </label>
+                    <input type="text" name="nama" class="form-control" placeholder="Masukan Nama" value="<%= user_name || '' %>" required>
                 </div>
                 <div class="form-group">
-					<label>Kelas: </label>
-					<input type="text" name="kelas" class="form-control" placeholder="Masukan Kelas" required>
+                    <label>Email: </label>
+                    <input type="text" name="email" class="form-control" placeholder="Masukan Email" value="<%= user_email || '' %>" required>
                 </div>
                 <div class="form-group">
-					<label>Nama Event: </label>
-					<input type="text" name="nama_event" class="form-control" placeholder="Nama Event Yang akan dibayarkan: " required>
+                    <label>Perihal Pembayaran: </label>
+                    <input type="text" name="perihal" class="form-control" placeholder="Perihal Pembayaran: " required>
                 </div>
+                
                 <!-- <div class="form-group">
 					<label>Kelas: </label>
                     <select class="form-select" name="event" aria-placeholder="Masukkan Nama Event" required>
@@ -67,7 +68,16 @@
                         <option value="3">Pembayaran Lain-Lain</option>
                       </select>
                 </div>            -->
-                <button type="submit" class="btn btn-primary" >Daftar</button>
+                <button type="submit" class="btn btn-primary" >Kirim</button>
+                <%if (pesanFlash) { %>
+                    <div class="alert alert-<%= colorFlash %> alert-dismissible fade show mt-3" role="alert">
+                        <strong><%= statusFlash %></strong> 
+                        <%= pesanFlash %>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <% } %>
 			</form>
 		</div>  
 	</div>

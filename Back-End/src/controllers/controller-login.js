@@ -37,7 +37,7 @@ module.exports ={
                         req.session.loggedin = true;
                         req.session.userid = user.user_id;
                         req.session.username = user.user_name;
-                        res.redirect('/')
+                        res.redirect('/');
                         // if (user.status === 'admin') {
                         //     res.redirect('/admin');
                         // }
