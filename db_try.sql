@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 05, 2023 at 03:17 PM
+-- Generation Time: Nov 08, 2023 at 04:29 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -38,7 +38,12 @@ CREATE TABLE `kelas` (
 --
 
 INSERT INTO `kelas` (`id_kelas`, `nama_kelas`, `kompetensi_keahlian`) VALUES
-(1, 'XI RPL 3', 'Rekayasa Perangkat Lunak');
+(1, 'X RPL 1', 'Rekayasa Perangkat Lunak'),
+(2, 'X RPL 2', 'Rekayasa Perangkat Lunak'),
+(3, 'X RPL 3', 'Rekayasa Perangkat Lunak'),
+(4, 'X TKJ 1', 'Teknik Komputer Jaringan'),
+(5, 'X TKJ 2', 'Teknik Komputer Jaringan'),
+(6, 'X MM 1', 'Multimedia');
 
 -- --------------------------------------------------------
 
@@ -167,7 +172,7 @@ ALTER TABLE `spp`
 -- AUTO_INCREMENT for table `kelas`
 --
 ALTER TABLE `kelas`
-  MODIFY `id_kelas` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_kelas` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `login`
@@ -191,7 +196,7 @@ ALTER TABLE `siswa`
 -- AUTO_INCREMENT for table `spp`
 --
 ALTER TABLE `spp`
-  MODIFY `id_spp` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2040002;
+  MODIFY `id_spp` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2040003;
 
 --
 -- Constraints for dumped tables
