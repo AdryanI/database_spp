@@ -77,10 +77,12 @@
                                 <label>Periode:</label>
                                 <input type="text" value="<%= periode %>" name="pass" class="form-control" disabled>
                             </div>
-                            <div class="form-group"> 
-                                <input type="file" name="foto" class="form-control" id="inputFoto" accept="image/*"> <br>
-                                <button type="submit" class="btn btn-danger" value="" name="foto">Upload Gambar</button>
-                            </div>
+                            <form action="profileUpload" method="post" enctype="multipart/form-data">
+                                <div class="form-group"> 
+                                    <input type="file" name="foto" class="form-control" id="inputFoto" accept="image/*"> <br>
+                                    <button type="submit" class="btn btn-danger" value="" name="foto">Upload Gambar</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>

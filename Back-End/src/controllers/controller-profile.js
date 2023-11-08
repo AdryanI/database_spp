@@ -26,39 +26,39 @@ module.exports = {
                     `
                 , function (error, kelasResults) {
                     if (error) throw error;
-
-                    // Selanjutnya, ubah objek data yang akan dikirim ke tampilan
-                    res.render("profile", {
-                        url: 'http://localhost:5000/',
-                        userName: req.session.username,
-                        nama: results[0]['user_name'],
-                        email: results[0]['user_email'],
-                        status: results[0]['status'],
-                        periode: results[0]['periode'],
-                        foto: results[0]['foto'],
-                        kompetensi_keahlian: results[0]['kompetensi_keahlian'],
-                        nama_kelas: results[0]['nama_kelas'],
+                        connection.query(
+                            `
+                            SELECT * FROM profile
+                            `
+                        ), function (error, results){
+                            if (error) throw error;
+                                // Selanjutnya, ubah objek data yang akan dikirim ke tampilan
+                                res.render("profile", {
+                                    url: 'http://localhost:5000/',
+                                    userName: req.session.username,
+                                    foto: results[0]['foto'],
+                                    nama: results[0]['user_name'],
+                                    email: results[0]['user_email'],
+                                    status: results[0]['status'],
+                                    periode: results[0]['periode'],
                     });
+                    }
                 });
             });
             connection.release();
         })
     },
- profileUpload(req, res) {
+//  profileUpload(req, res) {
         
-        pool.getConnection(function(err, connection) {
-            if (err) throw err;
-            connection.query(
-                `INSERT INTO login (foto) VALUES (?)`,
-                function (error, results) {
-                    if(error) throw error;
-                    res.render("profileUpload", {
-                        url: 'http://localhost:5000/profile/',
-                        userName: req.session.username,
-                    })
-                }
-            )
-        });
+//         pool.getConnection(function(err, connection) {
+//             if (err) throw err;
+//             connection.query(
+//                 `INSERT INTO profile (foto) VALUES (?)`,
+//                 function (error, results) {
+//                     if (error) throw error;
+//                 }
+//             )
+//         });
 
-    }
+//     }
 }
