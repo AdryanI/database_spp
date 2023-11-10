@@ -19,16 +19,20 @@
 			<form action="<%= url %>create-data/save" method="POST" class="col-md-4 card">
 				<h2>Form Pembayaran</h2>
                 <div class="form-group">
+                    <label>NISN: </label>
+                    <input type="text" name="nisn" id="searchInput" class="form-control" placeholder="Masukan NISN" oninput="Search()" required enabled>
+                </div>
+                <div class="form-group">
                     <label>Nama: </label>
-                    <input type="text" name="nama" class="form-control" placeholder="Masukan Nama" value="<%= user_name || '' %>" required>
+                    <input type="text" name="nama" class="form-control" placeholder="Masukan Nama" value="" required >
                 </div>
                 <div class="form-group">
-                    <label>Email: </label>
-                    <input type="text" name="email" class="form-control" placeholder="Masukan Email" value="<%= user_email || '' %>" required>
+                    <label>ID SPP: </label>
+                    <input type="text" name="telp" class="form-control" placeholder="Masukkan ID SPP" value="" required >
                 </div>
                 <div class="form-group">
-                    <label>Perihal Pembayaran: </label>
-                    <input type="text" name="perihal" class="form-control" placeholder="Perihal Pembayaran: " required>
+                    <label>Nominal:  </label>
+                    <input type="text" name="perihal" class="form-control" placeholder="Masukkan Nominal Pembayaran" value="" required >
                 </div>
                 
                 <!-- <div class="form-group">

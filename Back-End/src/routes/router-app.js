@@ -13,6 +13,6 @@ router.get('/admin', verifyUser.isLogin, adminController.admin);
 router.get('/siswa', verifyUser.isLogin, siswaController.siswa);
 router.get('/petugas', verifyUser.isLogin, petugasController.petugas);
 router.get('/profile', verifyUser.isLogin, profileController.profile);
-router.post('/profileUpload', verifyUser.isLogin, profileController.profileUpload)
+// router.post('/profileUpload', verifyUser.isLogin, profileController.profileUpload)
 
 module.exports = router;

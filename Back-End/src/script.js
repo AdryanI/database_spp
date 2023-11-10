@@ -20,6 +20,34 @@ function fetchImages() {
       })
       .catch(error => console.log(error));
   }
+  function search() {
+    var searchValue = document.getElementById('searchInput').value;
+
+    // Kirim permintaan AJAX ke server dengan nilai pencarian
+    fetch(`/search-create-data?query=${searchValue}`)
+      .then(response => response.json())
+      .then(data => {
+        // Perbarui tampilan dengan hasil pencarian
+        if(data.length > 0){
+          const firstRes = data[0];
+
+          document.getElementById('nisn').value = firstResult.nisn;
+          document.getElementById('nama').value = firstResult.nama;
+          document.getElementById('id_kelas').value = firstResult.id_kelas;
+          document.getElementById('nomor_telp').value = firstResult.nomor_telp;
+          document.getElementById('id_spp').value = firstResult.id_spp;
+        } else {
+              // Jika tidak ada hasil pencarian, kosongkan nilai kolom input
+              document.getElementById('nisn').value = '';
+              document.getElementById('nama').value = '';
+              document.getElementById('id_kelas').value = '';
+              document.getElementById('nomor_telp').value = '';
+              document.getElementById('id_spp').value = '';
+        }
+      })
+      .catch(error => console.error('Error:', error));
+  }
+  
     // Call fetchImages() to load the initial list of uploaded images
     fetchImages();
     
