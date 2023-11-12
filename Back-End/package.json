@@ -4,7 +4,7 @@
   "description": "Untuk memudahkan OSIS dalam mencatat data transaksi",
   "main": "index.js",
   "scripts": {
-    "test": "npm start"
+    "start": "nodemon index.js"
   },
   "repository": {
     "type": "git",

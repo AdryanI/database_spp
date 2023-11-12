@@ -25,7 +25,7 @@ module.exports = {
             // Sekarang, tambahkan permintaan database untuk menghitung jumlah siswa
             connection.query(
               `
-              SELECT COUNT(*) AS jumlah_siswa FROM login WHERE status = 'siswa';
+              SELECT COUNT(*) AS jumlah_siswa FROM login WHERE status = 'Siswa';
               `
             , function (error, siswaResults) {
               if (error) throw error;
