@@ -53,6 +53,7 @@ const loginRoutes = require('./src/routes/router-login');
 const registerRoutes = require('./src/routes/router-register');
 const appRoutes = require('./src/routes/router-app');
 const createDataRoutes = require('./src/routes/router-create-data');
+const createDataSiswaRoutes = require('./src/routes/router-create-data-siswa');
 const showDataRoutes = require('./src/routes/router-show-data');
 
 // Configurasi dan gunakan library
@@ -82,8 +83,9 @@ app.set('view engine', 'ejs');
 // Gunakan routes yang telah didefinisikan
 app.use('/login', loginRoutes);
 app.use('/register', registerRoutes);
-app.use('/create-data', createDataRoutes)
-app.use('/show-data', showDataRoutes)
+app.use('/create-data', createDataRoutes);
+app.use('/create-data-siswa', createDataSiswaRoutes)
+app.use('/show-data', showDataRoutes);
 app.use('/', appRoutes);
 app.use(flash());
 

@@ -59,6 +59,9 @@
                         <% if (status === 'admin' || status === 'petugas') { %>
                         <a class="dropdown-item" href="<%= url %>show-data">Riwayat Transaksi</a>
                         <% } %>
+                        <% if (status === 'admin') { %>
+                        <a class="dropdown-item" href="<%= url %>create-data-siswa/data-login">Tambah Data Siswa</a>
+                        <% } %>
                         <a class="dropdown-item" href="<%= url %>login/logout">Logout</a>
 
                     </div>

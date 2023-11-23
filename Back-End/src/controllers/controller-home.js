@@ -58,7 +58,7 @@ module.exports = {
                             // Menampilkan nama jurusan tanpa terduplikasi
                           const kompetensiUnik = [...new Set(kompetensiArr)];
                             // Menampilkan jumlah jurusan tanpa terduplikasi
-                          const jumlahKompetensi = new Set(kompetensiArr).size;
+                          const jumlahKompetensi = new Set(kompetensiArr).size;    
                           res.render("home", {
                           url: 'http://localhost:5000/',
                           status,

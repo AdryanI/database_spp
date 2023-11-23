@@ -11,61 +11,71 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <script>
-    function formatNumber(inputId) {
-      const inputElement = document.getElementById(inputId);
-  
-      // Ambil nilai input
-      let inputValue = inputElement.value;
-  
-      // Hapus karakter selain digit
-      const numericValue = inputValue.replace(/\D/g, '');
-  
-      // Konversi menjadi angka dan format dengan tanda koma
-      const formattedValue = Number(numericValue).toLocaleString();
-  
-      // Set nilai input dengan nilai yang sudah diformat
-      inputElement.value = "Rp" + formattedValue + ".00";
-  
-      // Tampilkan pesan error jika nilai tidak valid
-      if (isNaN(Number(numericValue))) {
-          console.error('Error: Input bukan angka!');
-      }
-  }
-  
-  // Contoh penggunaan pada elemen input dengan ID 'myInput'
-  document.getElementById('nominal').addEventListener('blur', function () {
-      formatNumber('nominal');
-  });
-    </script>
-
 </head>
 <body style="padding: 0px !important;">
 	<div class="container h-100">
 		<div class="row h-100 justify-content-center align-items-center">
-			<form action="<%= url %>create-data/save" method="POST" class="col-md-4 card">
-				<h2>Form Pembayaran</h2>
+			<form action="<%= url %>create-data-siswa/save-siswa-data" method="POST" class="col-md-4 card">
+				<h2>Form Penambahan Data Siswa Baru</h2>
                 <div class="form-group">
                     <label>NISN: </label>
-                    <input type="text" name="nisn" id="searchInput" class="form-control" placeholder="Masukan NISN"required enabled>
+                    <input type="text" name="nisn" id="searchInput" class="form-control" placeholder="Masukan NISN" required>
+                </div>
+                <div class="form-group">
+                    <label>NIS: </label>
+                    <input type="text" name="nis" id="searchInput" class="form-control" placeholder="Masukan NISN" value="1234" required readonly>
                 </div>
                 <div class="form-group">
                     <label>Nama: </label>
-                    <input type="text" name="nama" class="form-control" placeholder="Masukan Nama" value="" required >
+                    <input type="text" name="nama" class="form-control" placeholder="Masukan Nama" required >
+                </div>
+                <div class="form-group">
+                    <label for="kompetensi_keahlian">Kompetensi Keahlian: </label>
+                    <select id="kompetensi_keahlian" name="kompetensi_keahlian" class="form-control" required>
+                        <option value="" disabled selected>Pilih Kompetensi Keahlian</option>
+                        <option value="Rekayasa Perangkat Lunak">Rekayasa Perangkat Lunak</option>
+                        <option value="Multimedia">Multimedia</option>
+                        <option value="Perbankan Keuangan Mikro">Perbankan Keuangan Mikro</option>
+                        <option value="Teknik Komputer Jaringan">Teknik Komputer Jaringan</option>
+                    </select>
+                </div>
+                <div class="form-group" id="kelasDetail" style="display: none;">
+                    <label for="nama_kelas">Nama Kelas Spesifik: </label>
+                    <input type="text" name="nama_kelas" class="form-control" placeholder="Masukkan Detail Kompetensi Keahlian">
+                </div>
+                <div class="form-group" id="kelasDetail">
+                    <label for="nama_kelas">ID Kelas: </label>
+                    <input type="text" name="id_kelas" class="form-control" placeholder="Masukkan Detail Kompetensi Keahlian">
+                </div>
+                <div class="form-group">
+                    <label>Alamat: </label>
+                    <input type="text" name="alamat" class="form-control" placeholder="Masukan Nama" required >
+                </div>
+                <div class="form-group">
+                    <label>Nomor Telepon: </label>
+                    <input type="text" name="nomor_telp" class="form-control" placeholder="Masukan Nama" required >
                 </div>
                 <div class="form-group">
                     <label>ID SPP: </label>
-                    <input type="text" name="id_spp" class="form-control" placeholder="Masukkan ID SPP" value="" >
+                    <input type="text" name="id_spp" class="form-control" placeholder="Masukkan ID SPP" >
+                </div>
+                <!-- <div class="form-group">
+                    <label>Email: </label>
+                    <input type="email" name="user_email" class="form-control" placeholder="Masukan Nama" required >
+                </div> -->
+                <!-- <div class="form-group">
+                    <label>Password: </label>
+                    <input type="password" name="user_password" class="form-control" placeholder="Masukan Nama" value="123" required readonly>
+                </div> -->
+                <!-- <div class="form-group">
+                    <label>Status: </label>
+                    <input type="text" name="status" class="form-control" placeholder="Masukan Nama" value="siswa" required readonly>
                 </div>
                 <div class="form-group">
-                    <label>Nominal:  </label>
-                    <input type="text" id="nominal" name="nominal" class="form-control" placeholder="Masukkan Nominal Pembayaran" value="" required onblur="formatNumber('nominal')">
-                </div>
-                    <div class="form-group">
-                        <label>Penanggung Jawab Transaksi:  </label>
-                        <% const formattedStatus = status.charAt(0).toUpperCase() + status.slice(1); %>
-                        <input type="text" id="pj" name="penanggung_jawab" class="form-control" placeholder="Masukkan Nominal Pembayaran" value="<%= `${formattedStatus}: ${nama}` %>" required readonly>
-                </div>
+                    <label>Periode: </label>
+                    <input type="text" name="periode" class="form-control" placeholder="Masukan Nama" required >
+                </div> -->
+                
                 <button type="submit" class="btn btn-primary" >Kirim</button>
                 <%if (pesanFlash) { %>
                     <div class="alert alert-<%= colorFlash %> alert-dismissible fade show mt-3" role="alert">
@@ -119,4 +129,24 @@
 	</div>
     <script src="../script.js"></script>
 </body>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Menangani perubahan pada dropdown "Kompetensi Keahlian"
+        document.getElementById('kompetensi_keahlian').addEventListener('change', function () {
+            var selectedOption = this.value;
+    
+            // Mendapatkan elemen div "kelasDetail"
+            var kelasDetailDiv = document.getElementById('kelasDetail');
+    
+            // Menentukan apakah div "kelasDetail" harus ditampilkan atau tidak
+            if (selectedOption !== '') {
+                kelasDetailDiv.style.display = 'block';
+                // Update label sesuai dengan pilihan dropdown
+                kelasDetailDiv.querySelector('label').innerHTML = 'Nama Kelas Spesifik (' + selectedOption + '):';
+            } else {
+                kelasDetailDiv.style.display = 'none';
+            }
+        });
+    });
+    </script>
 </html>
